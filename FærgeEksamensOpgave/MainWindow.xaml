@@ -12,19 +12,99 @@
             <TabItem Header="Faerge overview">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80*"/>
-                        <ColumnDefinition Width="59*"/>
-                        <ColumnDefinition Width="1055*"/>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="buttonGet" Content="getFerryByID" HorizontalAlignment="Left" Height="37" Margin="24,241,0,0" VerticalAlignment="Top" Width="112" Click="Button_Click" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="29" Margin="24,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
-                    <ComboBox x:Name="ccbFerry" HorizontalAlignment="Left" Margin="24,36,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ccbFerry_SelectionChanged" Grid.ColumnSpan="3"/>
-                    <ListBox Name="lbFaerge" HorizontalAlignment="Left" Height="169" Margin="66,41,0,0" VerticalAlignment="Top" Width="115" DisplayMemberPath="navn" Grid.Column="2"/>
-                    <ListBox Name="lbBooking" HorizontalAlignment="Left" Height="169" Margin="239,41,0,0" VerticalAlignment="Top" Width="115" d:ItemsSource="{Binding}" Grid.Column="2"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="buttonGet" Content="Hent færge info" HorizontalAlignment="Center" Height="37" Margin="0,92,0,0" VerticalAlignment="Top" Width="112" Click="Button_Click"/>
+                    <TextBox x:Name="antalBilerOverview" HorizontalAlignment="Left" Height="29" Margin="55,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+                    <ComboBox x:Name="ccbFerry" HorizontalAlignment="Center" Margin="0,54,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ccbFerry_SelectionChanged"/>
+                    <ListBox Name="lbAfrejse" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="219" DisplayMemberPath="dato" Grid.Column="1" Margin="0,49,0,0" SelectionChanged="lbAfrejse_SelectionChanged"/>
+                    <Label Content="Vælg færge" HorizontalAlignment="Left" Margin="80,28,0,0" VerticalAlignment="Top"/>
+                    <ListBox x:Name="lbBooking" HorizontalAlignment="Center" Height="93" VerticalAlignment="Top" Width="219" DisplayMemberPath="dato" Grid.Column="1" Margin="0,58,0,0" Grid.Row="1" SelectionChanged="lbBooking_SelectionChanged"/>
+                    <Label Grid.Column="1" Content="Afrejser for valgte færge " HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top"/>
+                    <Label Grid.Column="1" Content="Bookings for valgte afrejse" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <ListBox x:Name="lbBil" HorizontalAlignment="Center" Height="93" VerticalAlignment="Top" Width="219" DisplayMemberPath="nummerplade" Grid.Column="1" Margin="0,59,0,0" Grid.Row="2" Grid.RowSpan="2" SelectionChanged="lbBil_SelectionChanged"/>
+                    <Label Grid.Column="1" Content="Biler for valgte booking" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+                    <ListBox x:Name="lbGaest" HorizontalAlignment="Center" Height="93" VerticalAlignment="Top" Width="219" DisplayMemberPath="navn" Grid.Column="1" Margin="0,58,0,0" Grid.Row="3" Grid.RowSpan="2" SelectionChanged="lbGaest_SelectionChanged"/>
+                    <Label Grid.Column="1" Content="Gaester for valgte bil" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Grid.Row="3"/>
+                    <Button Grid.Column="2" Content="Button" HorizontalAlignment="Left" Margin="102,101,0,0" VerticalAlignment="Top"/>
+                    <Button Grid.Column="2" Content="Slet valgte afrejse" HorizontalAlignment="Center" Margin="0,101,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
+                    <Button Grid.Column="2" Content="Slet valgte geast" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Grid.Row="3" Click="Button_Click_7"/>
+                    <Button Grid.Column="2" Content="Slet valgte bil" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Click="Button_Click_6"/>
+                    <Button Grid.Column="2" Content="Slet valgte booking" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Click="Button_Click_4"/>
+                    <TextBox Name="gaestIdOverview" HorizontalAlignment="Left" Margin="31,104,0,0" Grid.Row="4" TextWrapping="Wrap" Text="gaestid" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="bilIdOverview" HorizontalAlignment="Left" Margin="31,81,0,0" Grid.Row="4" TextWrapping="Wrap" Text="bilId" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="bookingIdOverview" HorizontalAlignment="Left" Margin="31,58,0,0" Grid.Row="4" TextWrapping="Wrap" Text="bookingid" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="afrejseIdOverview"  HorizontalAlignment="Left" Margin="31,33,0,0" Grid.Row="4" TextWrapping="Wrap" Text="afrejseid" VerticalAlignment="Top" Width="120" />
+                    <TextBox Name="faergeIdOverview" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="faergeid" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="omsætningOverview" HorizontalAlignment="Left" Height="29" Margin="55,150,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.RowSpan="2"/>
+                    <TextBox x:Name="antalGaesterOverview" HorizontalAlignment="Left" Height="29" Margin="56,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+                    <Label Content="Antal biler" HorizontalAlignment="Left" Margin="80,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <Label Content="Omsætning" HorizontalAlignment="Left" Margin="80,119,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <Label Content="Antal gaester" HorizontalAlignment="Left" Margin="80,64,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Opret færge" >
+            <TabItem Header="CRUD færge/opret afrejse" >
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="189*"/>
+                        <ColumnDefinition Width="239*"></ColumnDefinition>
+                        <ColumnDefinition Width="239*"></ColumnDefinition>
+                        <ColumnDefinition Width="239*"></ColumnDefinition>
+                        <ColumnDefinition Width="239*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Name="tboxName" HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox Name="tboxMaxAntalBiler" HorizontalAlignment="Left" Margin="20,122,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="2"/>
+                    <TextBox Name="tboxMaxAntalGaester" HorizontalAlignment="Left" Margin="10,123,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox Name="tboxMinAntalBiler" HorizontalAlignment="Left" Margin="9,0,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox Name="tboxMinAntalGaester" HorizontalAlignment="Left" Margin="20,26,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="2"/>
+                    <TextBox Name="tboxPrisPrBil" HorizontalAlignment="Left" Margin="9,31,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
+                    <TextBox Name="tboxPrisPrGaest" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="2"/>
+
+                    <Label Content="Faerge navn" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"/>
+                    <Label Content="Mindste antal biler" HorizontalAlignment="Left" Margin="21,91,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
+                    <Label Content="Max antal gaester" HorizontalAlignment="Left" Margin="9,91,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+                    <Label Content="Max antal biler" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+
+                    <Label Content="Mindste antal gaester" HorizontalAlignment="Left" Margin="15,151,0,0" VerticalAlignment="Top"  Grid.Column="2" Grid.RowSpan="2"/>
+                    <Label Content="Pris pr bil" HorizontalAlignment="Left" Margin="24,151,0,0" VerticalAlignment="Top" Grid.Row="1"  Grid.Column="1" Grid.RowSpan="2"/>
+                    <Label Content="Pris pr gaest" HorizontalAlignment="Left" Margin="35,44,0,0" VerticalAlignment="Top" Grid.Row="1"  Grid.Column="2"/>
+                    <ComboBox x:Name="ccbFerryInfo" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectionChanged="ccbFerryInfo_SelectionChanged" Grid.Column="1" Margin="9,0,0,0"/>
+                    <Button Grid.Column="2" Content="Opret faerge" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_OpretFaerge" Margin="4,61,0,0" Grid.Row="2"/>
+                    <Button Grid.Column="2" Content="Opdater faerge" HorizontalAlignment="Left" Margin="93,61,0,0" VerticalAlignment="Top" Click="Button_Click_opdaterFaerge" Grid.Row="2"/>
+                    <Button Grid.Column="1" Content="Slet færge" HorizontalAlignment="Left" Margin="40,106,0,0" VerticalAlignment="Top" Click="Button_Click_DeleteFaerge"/>
+                    <TextBox x:Name="tboxNameID" Visibility="Hidden" HorizontalAlignment="Left" Margin="9,121,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <ListBox Name="listboxFaerger" Grid.Column="1" DisplayMemberPath="navn" Margin="0,0,189,151" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="3"/>
+                    <Button Grid.Column="3" Content="opret Afrejse&#xD;&#xA;" HorizontalAlignment="Left" Margin="47,110,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click_1"/>
+                    <DatePicker Name="datePick" Grid.Column="3" HorizontalAlignment="Left" Margin="32,76,0,0" VerticalAlignment="Top"/>
+                    <Label Grid.Column="3" Content="&lt;-- Vælg faerge og dato" HorizontalAlignment="Left" Margin="0,45,0,0" VerticalAlignment="Top"/>
+
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Opret booking">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -40,47 +120,41 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <TextBox Name="tboxName" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
-                    <TextBox Name="tboxMaxAntalBiler" HorizontalAlignment="Center" Margin="0,123,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="4"/>
-                    <TextBox Name="tboxMaxAntalGaester" HorizontalAlignment="Center" Margin="0,123,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="3"/>
-                    <TextBox Name="tboxMinAntalBiler" HorizontalAlignment="Center" Margin="0,124,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
-                    <TextBox Name="tboxMinAntalGaester" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="1"/>
-                    <TextBox Name="tboxPrisPrBil" HorizontalAlignment="Center" Margin="0,123,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="4" Grid.Column="1"/>
-                    <TextBox Name="tboxPrisPrGaest" HorizontalAlignment="Center" Margin="0,123,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="1"/>
-                    <TextBox Name="tboxFaergeId" HorizontalAlignment="Center" Margin="0,124,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
-
-                    <Label Content="Faerge navn" HorizontalAlignment="Left" Margin="59,68,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-                    <Label Content="Mindste antal biler" HorizontalAlignment="Left" Margin="59,92,0,0" VerticalAlignment="Top" Grid.Row="4"/>
-                    <Label Content="Max antal gaester" HorizontalAlignment="Left" Margin="59,92,0,0" VerticalAlignment="Top" Grid.Row="3"/>
-                    <Label Content="Max antal biler" HorizontalAlignment="Left" Margin="59,93,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-
-                    <Label Content="Mindste antal gaester" HorizontalAlignment="Left" Margin="59,68,0,0" VerticalAlignment="Top" Grid.Row="1"  Grid.Column="1"/>
-                    <Label Content="Faerge ID" HorizontalAlignment="Left" Margin="59,92,0,0" VerticalAlignment="Top" Grid.Row="4"  Grid.Column="1"/>
-                    <Label Content="Pris pr gaest" HorizontalAlignment="Left" Margin="59,92,0,0" VerticalAlignment="Top" Grid.Row="3"  Grid.Column="1"/>
-                    <Label Content="Pris pr bil" HorizontalAlignment="Left" Margin="59,93,0,0" VerticalAlignment="Top" Grid.Row="2"  Grid.Column="1"/>
-                    <ComboBox x:Name="ccbFerryInfo" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" SelectionChanged="ccbFerryInfo_SelectionChanged"/>
-                    <Button Grid.Column="1" Content="Opret faerge" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_OpretFaerge"/>
-                    <Button Grid.Column="1" Content="Opdater faerge" HorizontalAlignment="Center" Margin="0,91,0,0" VerticalAlignment="Top" Click="Button_Click_opdaterFaerge"/>
-                    <Button Grid.Column="1" Content="Slet færge" HorizontalAlignment="Left" Margin="101,121,0,0" VerticalAlignment="Top" Click="Button_Click_DeleteFaerge"/>
-                    <TextBox x:Name="tboxNameID" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,121,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <ListBox Name="listboxFaerger" Grid.Column="2" Grid.Row="1" DisplayMemberPath="navn"/>
-                    <Button Grid.Column="4" Content="opret Afrejse&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,91,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click_1"/>
-                    <DatePicker Name="datePick" Grid.Column="4" HorizontalAlignment="Left" Margin="80,32,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-
-
-
-
-                </Grid>
-            </TabItem>
-            <TabItem Header="Ret i faerge">
-                <Grid Background="#FFE5E5E5">
+                    <ComboBox Name="ccboxFaergeBooking" HorizontalAlignment="Center" Margin="0,76,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ccboxFaergeBooking_SelectionChanged"/>
+                    <TextBox Name="faergeIdBooking" HorizontalAlignment="Center" Margin="0,123,0,0" TextWrapping="Wrap" Text="FaergeId" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox Name="ccboxAfrejseBooking" HorizontalAlignment="Center" Margin="0,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="ccboxAfrejseBooking_SelectionChanged"/>
+                    <TextBox Name="afrejseIdBooking" HorizontalAlignment="Center" Margin="0,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="AfrejseID" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Faerge&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,34,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Vælg afrejse&#xA;" HorizontalAlignment="Center" Margin="0,12,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <TextBox Name="bookingIdBooking" HorizontalAlignment="Center" Margin="0,33,0,0" Grid.Row="2" TextWrapping="Wrap" Text="bookingId" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="bilIdBooking" HorizontalAlignment="Center" Margin="0,58,0,0" Grid.Row="2" TextWrapping="Wrap" Text="bilid" VerticalAlignment="Top" Width="120" />
+                    <Button Content="Opret booking" HorizontalAlignment="Center" Margin="0,102,0,0" Grid.Row="2" VerticalAlignment="Top" Click="Button_Click_OpretBooking"/>
+                    <ComboBox Name="ccboxBooking" Grid.Column="1" HorizontalAlignment="Center" Margin="0,76,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ccboxBooking_SelectionChanged"/>
+                    <Label Grid.Column="1" Content="Vælg Booking" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top"/>
+                    <Button Grid.Column="1" Content="tilføj bil til booking" HorizontalAlignment="Left" Margin="59,130,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_2"/>
+                    <TextBox Name="nummerplade" Grid.Column="1" HorizontalAlignment="Left" Margin="58,24,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="model" Grid.Column="1" HorizontalAlignment="Center" Margin="0,62,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="laengde" Grid.Column="1" HorizontalAlignment="Left" Margin="58,107,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Label Grid.Column="1" Content="Nummerplade" HorizontalAlignment="Left" Margin="75,149,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                    <Label Grid.Column="1" Content="laengde" HorizontalAlignment="Center" Margin="0,80,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <Label Grid.Column="1" Content="model" HorizontalAlignment="Center" Margin="0,36,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <TextBox x:Name="gaesteNavn" Grid.Column="2" HorizontalAlignment="Center" Margin="0,24,0,0" Grid.Row="1" TextWrapping="Wrap" Text="navn" VerticalAlignment="Top" Width="120"/>
+                    <CheckBox Name="cboxKøn" Grid.Column="2" Content="Mand/Kvinde" HorizontalAlignment="Left" Margin="96,80,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <ComboBox Name="ccboxBil" Grid.Column="2" HorizontalAlignment="Left" Margin="71,76,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ccboxBil_SelectionChanged"/>
+                    <Label Grid.Column="2" Content="Vælg bil" HorizontalAlignment="Left" Margin="88,50,0,0" VerticalAlignment="Top"/>
+                    <Label Grid.Column="2" Content="Køn" HorizontalAlignment="Left" Margin="107,47,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label Grid.Column="2" Content="navn" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                    <Button Grid.Column="2" Content="tilføj gæst til bil" HorizontalAlignment="Left" Margin="87,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_3"/>
 
 
                 </Grid>
             </TabItem>
             <TabItem Header="Statistik">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="205*"/>
+                        <ColumnDefinition Width="989*"/>
+                    </Grid.ColumnDefinitions>
 
 
                 </Grid>

@@ -62,5 +62,19 @@ namespace BusinessLogic.FaergeBLL
             return DataAccess.Repos.FaergeRepos.GetAfgangeForFaerge(id);
         }
 
+        public int CountGaesterFaerge(int id)
+        {
+            return DataAccess.Repos.FaergeRepos.CountGaesterFaerge(id);
+        }
+        public int CountBilerFaerge(int id)
+        {
+            return DataAccess.Repos.FaergeRepos.CountBilerFaerge(id);
+        }
+        public int CalculateTotalSumForFaerge(int id)
+        {
+            return DataAccess.Repos.FaergeRepos.CalculateTotalSumForFaerge(id);
+        }
+
+
     }
 }

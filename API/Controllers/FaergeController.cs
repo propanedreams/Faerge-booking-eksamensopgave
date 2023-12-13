@@ -104,5 +104,33 @@ namespace API.Controllers
             return bll.getFaergeAfrejser(id);
         }
 
+        [HttpGet]
+        [Route("getantalgaesterforfaerge")]
+        public int CountGaesterFaerge(int id)
+        {
+            FaergeBLL bll = new FaergeBLL();
+            return bll.CountGaesterFaerge(id);
+        }
+        [HttpGet]
+        [Route("getantalbilerforfaerge")]
+        public int CountBilerFaerge(int id)
+        {
+            FaergeBLL bll = new FaergeBLL();
+            return bll.CountBilerFaerge(id);
+        }
+
+        [HttpGet]
+        [Route("getCalculateTotalSumForFaerge")]
+        public int CalculateTotalSumForFaerge(int id)
+        {
+            FaergeBLL bll = new FaergeBLL();
+            return bll.CalculateTotalSumForFaerge(id);
+        }
+
+
+
+
+
+
     }
 }

@@ -41,6 +41,16 @@ namespace API.Controllers
             BilBLL bll = new();
             return bll.GetGaesterOnBil(id);
         }
+
+        [HttpDelete]
+        [Route("deleteBil/{id}")]
+        public async Task<Bil> deleteBil(string id)
+        {
+            BilBLL bll = new();
+           return await bll.DeleteBil(id);
+            
+
+        }
     }
 }
 

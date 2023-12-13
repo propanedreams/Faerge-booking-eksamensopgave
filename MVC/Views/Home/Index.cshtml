@@ -1,8 +1,73 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Faerge administration";
 }
 
+
+@using MVC.Models
+@model List<Faerge>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Faerge CRUD</h1>
+    <ul>
+        @foreach (Faerge f in @Model)
+        {
+            <li>
+                @f.navn
+            </li>
+        }
+    </ul>
+    <div style="display: flex; justify-content: space-around; margin: 20px;">
+
+        <!-- First Form -->
+        <form method="post" action="/Home/SubmitFaerge" style="width: 45%;">
+            <div class="form-group">
+                <label for="navn">Navn:</label>
+                <input type="text" id="navn" name="navn" required />
+            </div>
+
+            <div class="form-group">
+                <label for="maxAntalBiler">Max Antal Biler:</label>
+                <input type="number" id="maxAntalBiler" name="maxAntalBiler" required />
+            </div>
+
+            <div class="form-group">
+                <label for="maxAntalGaester">Max Antal Gaester:</label>
+                <input type="number" id="maxAntalGaester" name="maxAntalGaester" required />
+            </div>
+
+            <div class="form-group">
+                <label for="minAntalBiler">Min Antal Biler:</label>
+                <input type="number" id="minAntalBiler" name="minAntalBiler" required />
+            </div>
+
+            <div class="form-group">
+                <label for="minAntalGaester">Min Antal Gaester:</label>
+                <input type="text" id="minAntalGaester" name="minAntalGaester" required />
+            </div>
+
+            <div class="form-group">
+                <label for="laengde">Længde:</label>
+                <input type="text" id="laengde" name="laengde" required />
+            </div>
+
+            <div class="form-group">
+                <label for="prisPrBil">Pris pr. bil:</label>
+                <input type="text" id="prisPrBil" name="prisPrBil" required />
+            </div>
+
+            <div class="form-group">
+                <label for="prisPrGaest">Pris pr. gæst:</label>
+                <input type="text" id="prisPrGaest" name="prisPrGaest" required />
+            </div>
+
+            <button type="submit" style="background-color: #FF9900; color: #ffffff;">Opret</button>
+        </form>
+
+        <!-- Second Form -->
+       
+
+    </div>
+
+    
+
+
 </div>

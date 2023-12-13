@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace DTO.Model
 {
-   public class Afrejse
+    public class Afrejse
     {
-     
-            public Afrejse
-                ()
-            { }
 
-            public Afrejse(int afrejseId, DateTime dato)
-            {
+        public Afrejse
+            ()
+        { }
+
+        public Afrejse(int afrejseId, DateTime dato)
+        {
             this.afrejseId = afrejseId;
-            this.dato = dato;   
-            }
+            this.dato = dato;
+        }
 
         public Afrejse(int afrejseId, DateTime dato, int faergeid)
         {
@@ -29,14 +29,19 @@ namespace DTO.Model
         }
 
 
-     
-            public int afrejseId { get; set; }
-           
-            public DateTime dato { get; set; }
 
-            public int faergeid { get; set; }
+        public int afrejseId { get; set; }
 
-            public FaergeSimpel faerge { get; set; }
+        public DateTime dato { get; set; }
+
+        public int faergeid { get; set; }
+
+        public FaergeSimpel faerge { get; set; }
+        public override string ToString()
+        {
+            return dato.ToString();
         }
+
     }
+}
 

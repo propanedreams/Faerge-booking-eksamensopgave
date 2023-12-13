@@ -27,7 +27,11 @@ namespace BusinessLogic.BLL
         {
             return DataAccess.Repos.BilRepos.GetGeasterOnBil(id);
         }
+        public async Task<Bil> DeleteBil(string id)
+        {
+            return await BilRepos.DeleteBil(id);
 
+        }
 
     }
 }

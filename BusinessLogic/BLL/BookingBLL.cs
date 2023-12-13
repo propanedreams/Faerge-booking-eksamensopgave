@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess.Repos;
 using DTO.Model;
 
 namespace BusinessLogic.BLL
@@ -31,6 +32,12 @@ namespace BusinessLogic.BLL
         public Booking OpretBooking(Booking x)
         {
             return DataAccess.Repos.BookingRepos.OpretBooking(x);
+        }
+
+        public async Task<Booking> DeleteBooking(int id)
+        {
+            return await BookingRepos.DeleteBooking(id);
+
         }
 
     }

@@ -41,10 +41,18 @@ namespace API.Controllers
         [Route("opretBooking")]
         public  Booking OpretBooking(string dato, int afrejseId)
         {
-            // Validate faergeCreateModel properties as needed
+           
             BookingBLL bll = new();
             Booking x = new Booking(0, DateTime.Parse(dato), afrejseId);
              return  bll.OpretBooking(x);
+        }
+
+        [HttpDelete]
+        [Route("deleteBooking/{id}")]
+        public async Task<Booking> deleteBooking(int id)
+        {
+            BookingBLL bll = new();
+            return await bll.DeleteBooking(id);
         }
 
     }

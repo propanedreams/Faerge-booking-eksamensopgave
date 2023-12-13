@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Faerge administration";
+}
+
+
+@using MVC.Models
+@model List<Faerge>
+<div class="text-center">
+    <h1 class="display-4">Faerge Slet</h1>
+    <ul>
+        @foreach (Faerge f in @Model)
+        {
+            <li>
+                @f.navn
+            </li>
+        }
+    </ul>
+    <form method="post" action="/Home/SletFaerge">
+        <select id="id" name="id" required>
+            @foreach (Faerge f in @Model)
+            {
+                <option value="@f.id">@f.id</option>
+            }
+        </select>
+        <button type="submit" style="background-color: #FF9900; color: #ffffff;">Slet</button>
+    </form>
+
+</div>

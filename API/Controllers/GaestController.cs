@@ -34,5 +34,13 @@ namespace API.Controllers
             Gaest x = new(0, navn, koen, bilId);
             return bll.OpreGaest(x);
         }
+        [HttpDelete]
+        [Route("deleteGaest/{id}")]
+        public async Task<Gaest> deleteGaest(int id)
+        {
+            GaestBLL bll = new();
+            return await bll.DeleteGaest(id);
+        }
+
     }
 }

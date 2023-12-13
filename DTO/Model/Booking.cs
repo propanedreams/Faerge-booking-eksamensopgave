@@ -27,6 +27,11 @@ namespace DTO.Model
         public DateTime dato { get; set; }
         public int afrejseId { get; set; }
         public AfrejseSimpel afrejse { get; set; }
+
+        public override string ToString()
+        {
+            return id.ToString();
+        }
     }
 
 }

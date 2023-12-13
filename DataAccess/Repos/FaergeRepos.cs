@@ -114,8 +114,63 @@ namespace DataAccess.Repos
             return res;
         }
 
-        
-    
+        public static  int CountBilerFaerge(int faergeId)
+        {
+            int bilerCount = 0;
+            
+
+            using (FaergeContext context = new FaergeContext())
+            {
+                // Count the number of Biler associated with the given Faerge
+                bilerCount = context.Bil
+                    .Where(b => b.booking.afrejse.faergeid == faergeId)
+                    .Count();
+
+               
+            }
+
+            return bilerCount;
+        }
+
+        public static int CountGaesterFaerge(int faergeId)
+        {
+            int gaesterCount = 0;
+
+            using (FaergeContext context = new FaergeContext())
+            {
+                
+
+                // Count the number of Gaester associated with the given Faerge
+                gaesterCount = context.Gaest
+                    .Where(g => g.bil.booking.afrejse.faergeid == faergeId)
+                    .Count();
+            }
+
+            return gaesterCount;
+        }
+        public static int CalculateTotalSumForFaerge(int faergeId)
+        {
+            int totalSum = 0;
+            int bilerCount = 0;
+            int gaesterCount = 0;
+            using (FaergeContext context = new FaergeContext())
+            {
+                Faerge f = FaergeMapper.Map(context.Faerge.Find(faergeId));
+                // Count the number of Biler associated with the given Faerge
+                bilerCount = context.Bil
+                    .Where(b => b.booking.afrejse.faergeid == faergeId)
+                    .Count();
+                // Count the number of Gaester associated with the given Faerge
+                gaesterCount = context.Gaest
+                    .Where(g => g.bil.booking.afrejse.faergeid == faergeId)
+                    .Count();
+                totalSum = (bilerCount * f.prisPrBil) + (gaesterCount * f.prisPrGaest);
+            }
+
+            return totalSum;
+        }
+
+
 
     }
 }

@@ -35,5 +35,9 @@ namespace DTO.Model
         public string model { get; set; }
         public int bookingid { get; set; }
         public BookingSimpel booking { get; set; }
+        public override string ToString()
+        {
+            return nummerplade;
+        }
     }
 }

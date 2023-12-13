@@ -22,7 +22,12 @@ namespace BusinessLogic.BLL
 
         public Gaest OpreGaest(Gaest gaest)
         {
-            return DataAccess.Repos.GaestRepos.OpreGaest(gaest);
+            return DataAccess.Repos.GaestRepos.OpretGaest(gaest);
+        }
+        public async Task<Gaest> DeleteGaest(int id)
+        {
+            return await GaestRepos.DeleteGaest(id);
+
         }
     }
 }

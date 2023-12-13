@@ -34,15 +34,49 @@ namespace DataAccess.Repos
             }
             return list;
         }
+
+        //burde måske tjekkes i BLL, men ja shit happens
         public static Bil OpretBil(Bil bil)
         {
             using (FaergeContext context = new FaergeContext())
             {
-                context.Bil.Add(BilMapper.Map(bil));
+                // Map the Bil object and add it to the context
+                var mappedBil = BilMapper.Map(bil);
+                context.Bil.Add(mappedBil);
+
+                // Get the associated Booking and Afrejse
+                var booking = context.Booking.FirstOrDefault(b => b.id == mappedBil.bookingId);
+                var afrejse = context.Afrejse.FirstOrDefault(a => a.afrejseId == booking.afrejseId);
+
+                // Check if the associated Faerge has reached its car limit
+                var faergeId = afrejse.faergeid;
+                var currentCarCount = context.Bil.Count(b => b.booking.afrejse.faergeid == faergeId);
+
+                var faerge = context.Faerge.FirstOrDefault(f => f.id == faergeId);
+
+                if (faerge != null && currentCarCount >= faerge.maxAntalBiler)
+                {
+                    // Handle the case where the car limit is reached, for example, throw an exception
+                    throw new InvalidOperationException("The ferry has reached its car limit.");
+                }
+
                 context.SaveChanges();
             }
+
             return bil;
         }
+
+        //public static Bil OpretBil(Bil bil)
+        //{
+        //    using (FaergeContext context = new FaergeContext())
+        //    {
+        //        context.Bil.Add(BilMapper.Map(bil));
+        //        context.SaveChanges();
+        //    }
+        //    return bil;
+        //}
+
+
 
         public static List<DTO.Model.Gaest> GetGeasterOnBil(string id)
         {
@@ -56,6 +90,23 @@ namespace DataAccess.Repos
                 }
             }
             return res;
+        }
+        public static async Task<Bil> DeleteBil(string id)
+        {
+            using (FaergeContext context = new FaergeContext())
+            {
+                Model.Bil res = context.Bil
+                    .FirstOrDefault(f => f.nummerplade == id);
+                if (res != null)
+                {
+                    context.Bil.Remove(res);
+                    await context.SaveChangesAsync();
+
+                }
+                return null;
+
+            }
+
         }
 
     }

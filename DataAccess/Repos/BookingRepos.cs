@@ -70,6 +70,24 @@ namespace DataAccess.Repos
             return res;
         }
 
+        public static async Task<Booking> DeleteBooking(int id)
+        {
+            using (FaergeContext context = new FaergeContext())
+            {
+                Model.Booking res = context.Booking
+                    .FirstOrDefault(f => f.id == id);
+                if (res != null)
+                {
+                    context.Booking.Remove(res);
+                    await context.SaveChangesAsync();
+
+                }
+                return null;
+
+            }
+
+        }
+
     }
 }
 

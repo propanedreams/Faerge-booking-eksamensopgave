@@ -1,0 +1,38 @@
+﻿
+@model List<Pokemon>
+@* 
+<div class="text-center">
+    <h1 class="display-4">Pokemon Details</h1>
+
+    <form method="post" action="/Poke/GetPokemon">
+        <label for="pokemonId">Enter Pokemon ID:</label>
+        <input type="text" id="pokemonId" name="pokemonId" required />
+        <button type="submit">Search</button>
+    </form>
+
+
+    @if (Model != null)
+    {
+        <div>
+            <label for="name">Name:</label>
+            <span id="name">@Model.name</span>
+        </div>
+
+        <!-- Add other properties as needed -->
+    }
+</div> *@
+
+<div class="container">
+    @foreach (var p in Model)
+    {
+        <div class="card">
+            <img src="@p.sprites.front_shiny" alt="@p.name">
+            <div class="card-body">
+                <h5 class="card-title">@p.name</h5>
+                <p class="card-text">ID: @p.id</p>
+                <p class="card-text">Weight: @p.weight</p>
+                <p class="card-text">Height: @p.height</p>
+            </div>
+        </div>
+    }
+</div>
